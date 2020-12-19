@@ -1,0 +1,152 @@
+@import 'variables.scss';
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $color-general;
+}
+
+.mat-checkbox-label {
+  white-space: normal;
+}
+
+mat-form-field {
+  .icon-eye {
+    cursor: pointer;
+  }
+
+  .icon-remove {
+    cursor: pointer;
+    font-size: 1.5rem !important;
+    color: $color-text-default;
+  }
+}
+
+.mat-form-space-none {
+  .mat-form-field-infix {
+    border-top: 0px !important;
+    padding-top: 0px !important;
+  }
+}
+
+.mat-form-field-appearance-standard {
+  input {
+    // height: 40px;
+    padding-bottom: 2rem;
+  }
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $color-text-gray;
+}
+
+.mat-form-field-appearance-standard .mat-form-field-flex {
+  padding-top: 0px !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $color-text-gray;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $color-text-gray;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: $color-text-gray;
+}
+
+.mat-form-field-appearance-standard {
+  .mat-select {
+    padding-bottom: 2rem;
+  }
+}
+
+mat-option, mat-select{
+    text-transform: capitalize;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $color-text-default;
+}
+
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $color-text-dark;
+}
+
+.mat-input-element {
+  caret-color: $color-text-dark;
+}
+
+.mat-input-element:disabled {
+  color: $color-text-default;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.mat-dialog-container {
+  @extend .card-panel;
+  min-width: 350px;
+}
+
+// .cdk-overlay-pane {
+//   max-width: 100% !important;
+//   overflow: auto !important;
+// }
+
+// .cdk-overlay-container {
+//   position: fixed;
+//   z-index: 2000;
+// }
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.mat-slide-toggle {
+  .mat-slide-toggle-bar {
+    background-color: #f3b5b5;
+  }
+  .mat-slide-toggle-thumb {
+    background-color: #eb5c5c;
+  }
+}
+
+.mat-slide-toggle.mat-checked {
+  .mat-slide-toggle-bar {
+    background-color: rgb(143 58 53 / 0.6);
+  }
+  .mat-slide-toggle-thumb {
+    background-color: $color-general;
+  }
+  &.toggle-sucesso {
+    .mat-slide-toggle-bar {
+      background-color: #dcf2e8;
+    }
+    .mat-slide-toggle-thumb {
+      background-color: #66c59c;
+    }
+  }
+}
+
+.mat-slide-toggle-content {
+  font-family: "Palanquin";
+  color: $color-text-default;
+}
+
+.mat-checked {
+  .mat-slide-toggle-content {
+    font-weight: bold !important;
+    color: $color-general !important;
+  }
+}
+
+.mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0em !important; 
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $color-orange;
+}

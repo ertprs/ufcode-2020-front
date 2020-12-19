@@ -1,0 +1,64 @@
+// Variables
+$color-orange: rgb(239, 108, 41);
+$color-blue: #325688;
+$color-general: #325688;
+$color-box-shadow: rgba(0, 0, 0, 0.15);
+$color-text-default: #636363;
+$color-text-dark: #321c1c;
+$color-text-gray: #929497;
+$color-text-light: #8c8a97;
+$color-light-menu: #7f85a2;
+$color-back-gray: #f9f9f9;
+$color-back-light-gray: #f6f6f6;
+$color-panel-gray: #e5e5e5;
+$color-light-gray: #f7f6fe;
+$color-light-pink: #f0c4bc;
+$color-back-pink: rgba(185, 61, 52, 0.08);
+$color-success: #219653;
+
+$card-border-radius: 16px;
+$card-box-shadow: 1px 1px 2px $color-box-shadow;
+
+.color-orange {
+  color: $color-orange !important;
+}
+
+.color-blue {
+    color: $color-blue !important;
+  }
+
+.color-success {
+  color: forestgreen;
+}
+
+.color-warning {
+  color: orange;
+}
+
+.color-black {
+  color: #000000;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-light {
+  color: $color-text-light !important;
+}
+
+.font-palanquin-dark {
+  font-family: "Palanquin Dark";
+}
+
+.font-palanquin {
+  font-family: "Palanquin";
+}
+
+.font-roboto {
+  font-family: "Roboto" !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

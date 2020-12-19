@@ -1,0 +1,96 @@
+<app-nav-bar></app-nav-bar>
+<div class="container-fluid d-flex align-items-center justify-content-center">
+
+
+  <div class="row">
+
+    <div class="col">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col text-center">
+            <label class="small-title">
+              Empréstimo Consignado
+            </label>
+          </div>
+        </div>
+
+        <form (ngSubmit)="solicitar()">
+
+          <div class="row mt-5">
+            <div class="col mt-2">
+              <label class="label-medium">Qual o seu convênio?</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select [ngModelOptions]="{standalone: true}" [(ngModel)]="convenio" required name="convenio">
+                  <mat-option *ngFor="let c of convenios" [value]="c">
+                    {{c}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col">
+              <label class="label-medium">De quanto precisa?</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <span matPrefix>R$ &nbsp;</span>
+                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="valor" required matInput type="number" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col mt-5">
+              <button class="action-button md w-100" type="submit">
+                Solicitar agora
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+
+    <div class="col" *ngIf="ofertas">
+      <div class="card-panel">
+        <div class="row">
+          <div class="col text-center">
+            <label class="small-title">
+              Encontramos para você
+            </label>
+          </div>
+        </div>
+
+        <div class="row mt-5 d-flex justify-content-center align-items-center">
+          <mat-progress-spinner *ngIf="loading" [color]="color" [mode]="mode">
+          </mat-progress-spinner>
+        </div>
+
+        <div *ngIf="!loading" class="row d-flex justify-content-center align-items-center">
+          <div class="col-6 p-0" *ngFor="let r of resultadosEncontrados">
+            <div class="item-resultado">
+              <div class="row">
+                <img [src]="r.banco_img">
+              </div>
+              <div class="row">
+                <strong><label class="label-medium color-blue">R$ {{r.banco_valor}}</label></strong>
+              </div>
+              <div class="row">
+                <label class="label-default">Juros: {{r.banco_taxa}} ao mês</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+</div>
