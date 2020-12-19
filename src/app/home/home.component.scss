@@ -10,21 +10,4 @@
     height: 100%;
   }
 
-  .item-resultado {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    padding: 2rem;
-    margin: .5rem;
-    cursor: pointer;
-
-    .row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    img {
-      width: 30%;
-    }
-  }
-
 }

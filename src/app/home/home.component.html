@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="container-fluid d-flex align-items-center justify-content-center">
 
-
+  <!-- Simulação do Empréstimo -->
   <div class="row">
 
     <div class="col">
@@ -34,7 +34,7 @@
               <label class="label-medium">De quanto precisa?</label>
               <mat-form-field appearance="outline" class="w-100">
                 <span matPrefix>R$ &nbsp;</span>
-                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="valor" required matInput type="number" />
+                <input [ngModelOptions]="{standalone: true}" [(ngModel)]="emprestimo_valor" required matInput type="number" />
               </mat-form-field>
             </div>
           </div>
@@ -69,7 +69,7 @@
 
         <div *ngIf="!loading" class="row d-flex justify-content-center align-items-center">
           <div class="col-6 p-0" *ngFor="let r of resultadosEncontrados">
-            <div class="item-resultado">
+            <div class="item-resultado" (click)="validaCpf(r)">
               <div class="row">
                 <img [src]="r.banco_img">
               </div>
@@ -83,12 +83,12 @@
           </div>
         </div>
 
-
       </div>
     </div>
 
 
   </div>
+
 
 
 

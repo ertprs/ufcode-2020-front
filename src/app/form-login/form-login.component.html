@@ -1,0 +1,78 @@
+<div class="dialog-agenda container">
+
+
+  <div mat-dialog-header class="row d-flex justify-content-center header">
+    <span class="material-icons cursor-pointer btn-close" (click)="close()">
+      close
+    </span>
+  </div>
+
+
+
+
+  <div mat-dialog-content>
+
+
+    <!-- Login -->
+    <div class="row mt-5">
+
+      <div class="col">
+        <div class="row">
+          <div class="col text-center">
+            <label class="small-title">
+              Digite os seus dados para entrar
+            </label>
+          </div>
+        </div>
+
+        <form>
+
+          <div class="row mt-5">
+            <div class="col mt-2">
+              <label class="label-medium">CPF</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input [ngModelOptions]="{standalone: true}" name="usuario_cpf" [(ngModel)]="usuario_cpf"
+                  mask="000.000.000-00" required matInput type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col">
+              <label class="label-medium">Senha</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input [ngModelOptions]="{stansdalone: true}" name="user_senha" [(ngModel)]="user_senha" required
+                  matInput type="password" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col mt-5">
+              <button class="action-button md w-100" type="submit">
+                Entrar
+              </button>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <button (click)="close()" class="action-button outline md w-100" type="submit">
+                Fechar
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>

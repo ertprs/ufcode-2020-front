@@ -19,8 +19,10 @@ var select_1 = require("@angular/material/select");
 var input_1 = require("@angular/material/input");
 var form_field_1 = require("@angular/material/form-field");
 var progress_spinner_1 = require("@angular/material/progress-spinner");
+var dialog_1 = require("@angular/material/dialog");
 var forms_1 = require("@angular/forms");
 var ngx_mask_1 = require("ngx-mask");
+var form_login_component_1 = require("./form-login/form-login.component");
 exports.options = null;
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -30,7 +32,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 app_component_1.AppComponent,
                 nav_bar_component_1.NavBarComponent,
-                home_component_1.HomeComponent
+                home_component_1.HomeComponent,
+                form_login_component_1.FormLoginComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -43,6 +46,8 @@ var AppModule = /** @class */ (function () {
                 select_1.MatSelectModule,
                 form_field_1.MatFormFieldModule,
                 progress_spinner_1.MatProgressSpinnerModule,
+                select_1.MatSelectModule,
+                dialog_1.MatDialogModule,
                 ngx_mask_1.NgxMaskModule.forRoot(),
             ],
             providers: [],

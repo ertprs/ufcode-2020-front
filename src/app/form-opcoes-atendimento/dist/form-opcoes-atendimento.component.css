@@ -1,0 +1,26 @@
+.mat-dialog-content {
+  width: 450px;
+}
+
+.btn-close {
+  position: absolute;
+  right: 0px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.header {
+  position: relative;
+}
+
+.item-resultado {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.item-resultado img {
+  width: auto;
+  height: 50px;
+}

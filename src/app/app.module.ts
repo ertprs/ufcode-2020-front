@@ -11,9 +11,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { FormLoginComponent } from './form-login/form-login.component';
+import { FormSimulaCpfComponent } from './form-simula-cpf/form-simula-cpf.component';
+import { FormPreCadastroComponent } from './form-pre-cadastro/form-pre-cadastro.component';
+import { FormOpcoesAtendimentoComponent } from './form-opcoes-atendimento/form-opcoes-atendimento.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -21,7 +26,11 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   declarations: [
     AppComponent,
     NavBarComponent,
-    HomeComponent
+    HomeComponent,
+    FormLoginComponent,
+    FormSimulaCpfComponent,
+    FormPreCadastroComponent,
+    FormOpcoesAtendimentoComponent
   ],
   imports: [
     BrowserModule,
@@ -34,8 +43,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatSelectModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
+    MatDialogModule,
     NgxMaskModule.forRoot(),
-
   ],
   providers: [],
   bootstrap: [AppComponent]
