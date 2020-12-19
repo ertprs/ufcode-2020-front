@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
 import { FormOpcoesAtendimentoComponent } from '../form-opcoes-atendimento/form-opcoes-atendimento.component';
 import { FormPreCadastroComponent } from '../form-pre-cadastro/form-pre-cadastro.component';
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   usuario_cpf = null;
   user_senha = null;
 
+  @ViewChild('panel') panel: ElementRef;
 
   resultadosEncontrados = [
 
@@ -36,7 +38,18 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.preCadastro();
+    // this.preCadastro();
+    this.opcoesAtendimento();
+  }
+
+  scroll(): void {
+    setTimeout(() => {
+      try {
+        this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {
+        this.panel.nativeElement.scrollIntoView();
+      }
+    }, 250);
   }
 
   solicitar() {
@@ -48,6 +61,9 @@ export class HomeComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       this.loading = false;
+      this.scroll();
+
+
     }, 200);
     this.ofertas = true;
     this.resultadosEncontrados = [{
@@ -105,7 +121,8 @@ export class HomeComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.verificar) {
-
+        // apenas se preenchido
+        this.opcoesAtendimento();
       }
     });
   }
@@ -119,10 +136,29 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.verificar) {
-
+      if (result && result.agendou && result.acao === 'ligacao') {
+        this.showAlertConfirma('Ligação agendada!', 'Entraremos em contato em breve.', 'Fechar');
+      } else if (result && result.agendou && result.acao === 'visita') {
+        this.showAlertConfirma('Visita agendada!', 'Estamos esperando por você.', 'Fechar');
       }
     });
   }
+
+
+  showAlertConfirma(title, text, btn): void {
+    const dialogRef = this.dialog.open(DialogAlertComponent, {
+      data: {
+        success: true,
+        title: title,
+        text: text,
+        btnText: btn
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+
 
 }

@@ -16,10 +16,31 @@ var FormOpcoesAtendimentoComponent = /** @class */ (function () {
     function FormOpcoesAtendimentoComponent(data, dialogRef) {
         this.data = data;
         this.dialogRef = dialogRef;
+        this.horarios_ligacao = ['Manhã', 'Tarde', 'Noite'];
+        this.unidades = ['Empresta BH Afonso Pena', 'Empresta BH Tupinambás', 'Empresta BH Praça 7'];
+        this.escolhido = false;
+        this.loading = false;
+        this.color = 'primary';
+        this.mode = 'indeterminate';
     }
     FormOpcoesAtendimentoComponent.prototype.ngOnInit = function () { };
     FormOpcoesAtendimentoComponent.prototype.close = function () {
         this.dialogRef.close({});
+    };
+    FormOpcoesAtendimentoComponent.prototype.selecionar = function (op) {
+        this.opcao_atendimento = op;
+    };
+    FormOpcoesAtendimentoComponent.prototype.continuar = function () {
+        var _this = this;
+        this.escolhido = true;
+        this.loading = true;
+        setTimeout(function () {
+            _this.loading = false;
+            _this.dialogRef.close({
+                agendou: true,
+                acao: _this.opcao_atendimento
+            });
+        }, 1000);
     };
     FormOpcoesAtendimentoComponent = __decorate([
         core_1.Component({

@@ -36,12 +36,12 @@ export class FormPreCadastroComponent implements OnInit {
   }
 
   preCadastro() {
-
+    this.close(true);
   }
 
-  close(): void {
+  close(next?): void {
     this.dialogRef.close({
-
+      verificar: next
     });
   }
 

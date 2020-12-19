@@ -1,20 +1,8 @@
 <div class="dialog-agenda container">
 
+  <div mat-dialog-content *ngIf="!escolhido">
 
-  <div mat-dialog-header class="row d-flex justify-content-center header">
-    <span class="material-icons cursor-pointer btn-close" (click)="close()">
-      close
-    </span>
-  </div>
-
-
-
-
-  <div mat-dialog-content>
-
-
-    <!-- Login -->
-    <div class="row mt-5">
+    <div class="row mt-0 mt-md-5">
 
       <div class="col">
         <div class="row">
@@ -30,18 +18,31 @@
 
           <div class="row mt-5">
             <div class="col p-0">
-              <div class="item-resultado">
+              <div class="item-resultado" [ngClass]="{ 'selected': opcao_atendimento === 'ligacao'}"
+                (click)="selecionar('ligacao')">
                 <img src="../../assets/phone.png">
-                <label class="label-medium">
+                <label class="label-medium mt-3">
                   Quero receber uma ligação
                 </label>
               </div>
             </div>
+
             <div class="col p-0">
-              <div class="item-resultado">
+              <div class="item-resultado" [ngClass]="{ 'selected': opcao_atendimento === 'visita'}"
+                (click)="selecionar('visita')">
+                <img src="../../assets/store.png">
+                <label class="label-medium mt-3">
+                  Quero agendar uma visita na loja
+                </label>
+              </div>
+            </div>
+
+            <div class="col p-0">
+              <div class="item-resultado" [ngClass]="{ 'selected': opcao_atendimento === 'online'}"
+                (click)="selecionar('online')">
                 <img src="../../assets/computer.png">
-                <label class="label-medium">
-                  Quero continuar pelo site
+                <label class="label-medium mt-3">
+                  Quero fazer tudo pelo site
                 </label>
               </div>
             </div>
@@ -53,6 +54,96 @@
 
       </div>
     </div>
+
+    <div class="row mt-0 mt-md-5" *ngIf="opcao_atendimento">
+      <div class="col p-2">
+        <label class="small-title" style="text-transform: capitalize;">
+          {{opcao_atendimento}}
+        </label>
+      </div>
+    </div>
+
+    <!--LIGACAO-->
+    <div class="row" *ngIf="opcao_atendimento && opcao_atendimento === 'ligacao'">
+      <div class="col p-2">
+        <label class="label-medium">
+          Escolha o horário mais conveniente para entrarmos em contato.
+        </label>
+        <div class="mt-4">
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" [value]="hr" *ngFor="let hr of horarios_ligacao">
+              {{hr}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+
+    <!--VISITA-->
+    <div class="row" *ngIf="opcao_atendimento && opcao_atendimento === 'visita'">
+      <div class="col-5 p-2">
+        <div class="mt-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Escolha a loja</mat-label>
+
+            <mat-select>
+              <mat-option *ngFor="let u of unidades" [value]="u">
+                {{u}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-4 p-2">
+        <div class="mt-2">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Escolha a data</mat-label>
+            <input matInput [matDatepicker]="picker2" name="dataFinal" />
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col-3 p-2">
+        <div class="mt-2">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Horário</mat-label>
+            <input matInput type="time" />
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!--LIGACAO-->
+    <div class="row" *ngIf="opcao_atendimento && opcao_atendimento === 'online'">
+      <div class="col p-2">
+        <label class="label-medium">
+          Para completar a solicitação do seu empréstimo, precisaremos de mais informações sobre você. Nos próximos
+          passos iremos realizar o seu cadastro na plataforma. Mas relaxa, estaremos aqui para te ajudar em cada passo!
+        </label>
+      </div>
+    </div>
+
+    <div class="row mt-5 d-flex justify-content-end" *ngIf="opcao_atendimento">
+      <button (click)="continuar()" class="action-button outline md">
+        Continuar
+      </button>
+    </div>
+
+
   </div>
 
+  <div mat-dialog-content *ngIf="escolhido">
+
+    <div class="row mt-5 d-flex justify-content-center">
+
+      <mat-progress-spinner *ngIf="loading" [color]="color" [mode]="mode">
+      </mat-progress-spinner>
+
+
+    </div>
+
+  </div>
 </div>

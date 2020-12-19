@@ -1,5 +1,5 @@
 .mat-dialog-content {
-  width: 450px;
+  width: 600px;
 }
 
 .btn-close {
@@ -20,7 +20,36 @@
   flex-direction: column;
   text-align: center;
 }
+.item-resultado.selected {
+  border-color: #28bd44;
+  box-shadow: 0 0 4px #28bd44;
+}
 .item-resultado img {
   width: auto;
   height: 50px;
+}
+
+@media (max-width: 768px) {
+  .mat-dialog-content {
+    width: unset;
+    height: 90vh;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+@media (min-width: 992px) {
+  .mat-dialog-content {
+    width: unset;
+    height: 90vh;
+    min-height: unset;
+    max-height: unset;
+  }
+}
+@media (min-width: 1367px) {
+  .mat-dialog-content {
+    width: 600px;
+    height: unset;
+    min-height: unset;
+    max-height: unset;
+  }
 }

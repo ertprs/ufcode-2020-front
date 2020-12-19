@@ -29,9 +29,12 @@ var FormPreCadastroComponent = /** @class */ (function () {
         });
     };
     FormPreCadastroComponent.prototype.preCadastro = function () {
+        this.close(true);
     };
-    FormPreCadastroComponent.prototype.close = function () {
-        this.dialogRef.close({});
+    FormPreCadastroComponent.prototype.close = function (next) {
+        this.dialogRef.close({
+            verificar: next
+        });
     };
     FormPreCadastroComponent = __decorate([
         core_1.Component({

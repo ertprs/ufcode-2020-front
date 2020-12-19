@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.HomeComponent = void 0;
 var core_1 = require("@angular/core");
+var dialog_alert_component_1 = require("../dialog-alert/dialog-alert.component");
 var form_opcoes_atendimento_component_1 = require("../form-opcoes-atendimento/form-opcoes-atendimento.component");
 var form_pre_cadastro_component_1 = require("../form-pre-cadastro/form-pre-cadastro.component");
 var form_simula_cpf_component_1 = require("../form-simula-cpf/form-simula-cpf.component");
@@ -26,7 +27,19 @@ var HomeComponent = /** @class */ (function () {
         this.resultadosEncontrados = [];
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.preCadastro();
+        // this.preCadastro();
+        this.opcoesAtendimento();
+    };
+    HomeComponent.prototype.scroll = function () {
+        var _this = this;
+        setTimeout(function () {
+            try {
+                _this.panel.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            catch (err) {
+                _this.panel.nativeElement.scrollIntoView();
+            }
+        }, 250);
     };
     HomeComponent.prototype.solicitar = function () {
         var _this = this;
@@ -36,6 +49,7 @@ var HomeComponent = /** @class */ (function () {
         this.loading = true;
         setTimeout(function () {
             _this.loading = false;
+            _this.scroll();
         }, 200);
         this.ofertas = true;
         this.resultadosEncontrados = [{
@@ -78,6 +92,7 @@ var HomeComponent = /** @class */ (function () {
         });
     };
     HomeComponent.prototype.preCadastro = function () {
+        var _this = this;
         console.log(this.usuario_cpf);
         var dialogRef = this.dialog.open(form_pre_cadastro_component_1.FormPreCadastroComponent, {
             data: {
@@ -87,18 +102,40 @@ var HomeComponent = /** @class */ (function () {
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result && result.verificar) {
+                // apenas se preenchido
+                _this.opcoesAtendimento();
             }
         });
     };
     HomeComponent.prototype.opcoesAtendimento = function () {
+        var _this = this;
         var dialogRef = this.dialog.open(form_opcoes_atendimento_component_1.FormOpcoesAtendimentoComponent, {
             data: {}
         });
         dialogRef.afterClosed().subscribe(function (result) {
-            if (result && result.verificar) {
+            if (result && result.agendou && result.acao === 'ligacao') {
+                _this.showAlertConfirma('Ligação agendada!', 'Entraremos em contato em breve.', 'Fechar');
+            }
+            else if (result && result.agendou && result.acao === 'visita') {
+                _this.showAlertConfirma('Visita agendada!', 'Estamos esperando por você.', 'Fechar');
             }
         });
     };
+    HomeComponent.prototype.showAlertConfirma = function (title, text, btn) {
+        var dialogRef = this.dialog.open(dialog_alert_component_1.DialogAlertComponent, {
+            data: {
+                success: true,
+                title: title,
+                text: text,
+                btnText: btn
+            }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+        });
+    };
+    __decorate([
+        core_1.ViewChild('panel')
+    ], HomeComponent.prototype, "panel");
     HomeComponent = __decorate([
         core_1.Component({
             selector: 'app-home',

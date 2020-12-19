@@ -164,3 +164,40 @@ mat-select {
     padding-top: 0px !important;
   }
 }
+
+mat-radio-group {
+  display: flex;
+  flex-direction: column;
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $color-orange;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle,
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+  .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: $color-orange;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .mat-dialog-container {
+    width: 90vw !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .mat-dialog-container {
+    width: 90vw !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 1367px) {
+  .mat-dialog-container {
+    width: unset !important;
+  }
+}

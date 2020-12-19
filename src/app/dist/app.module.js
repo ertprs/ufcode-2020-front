@@ -20,9 +20,16 @@ var input_1 = require("@angular/material/input");
 var form_field_1 = require("@angular/material/form-field");
 var progress_spinner_1 = require("@angular/material/progress-spinner");
 var dialog_1 = require("@angular/material/dialog");
+var radio_1 = require("@angular/material/radio");
+var datepicker_1 = require("@angular/material/datepicker");
 var forms_1 = require("@angular/forms");
 var ngx_mask_1 = require("ngx-mask");
 var form_login_component_1 = require("./form-login/form-login.component");
+var form_simula_cpf_component_1 = require("./form-simula-cpf/form-simula-cpf.component");
+var form_pre_cadastro_component_1 = require("./form-pre-cadastro/form-pre-cadastro.component");
+var form_opcoes_atendimento_component_1 = require("./form-opcoes-atendimento/form-opcoes-atendimento.component");
+var core_2 = require("@angular/material/core");
+var dialog_alert_component_1 = require("./dialog-alert/dialog-alert.component");
 exports.options = null;
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -33,7 +40,11 @@ var AppModule = /** @class */ (function () {
                 app_component_1.AppComponent,
                 nav_bar_component_1.NavBarComponent,
                 home_component_1.HomeComponent,
-                form_login_component_1.FormLoginComponent
+                form_login_component_1.FormLoginComponent,
+                form_simula_cpf_component_1.FormSimulaCpfComponent,
+                form_pre_cadastro_component_1.FormPreCadastroComponent,
+                form_opcoes_atendimento_component_1.FormOpcoesAtendimentoComponent,
+                dialog_alert_component_1.DialogAlertComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -48,6 +59,9 @@ var AppModule = /** @class */ (function () {
                 progress_spinner_1.MatProgressSpinnerModule,
                 select_1.MatSelectModule,
                 dialog_1.MatDialogModule,
+                datepicker_1.MatDatepickerModule,
+                core_2.MatNativeDateModule,
+                radio_1.MatRadioModule,
                 ngx_mask_1.NgxMaskModule.forRoot(),
             ],
             providers: [],
