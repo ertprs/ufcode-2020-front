@@ -1,30 +1,38 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light">
-    <div class="container">
-        <a class="navbar-brand">
-            <img routerLink="/" src="../../assets/logo.svg" class="d-inline-block align-top" alt="" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+  <div class="container">
+    <a class="navbar-brand">
+      <img routerLink="/" src="../../assets/logo.svg" class="d-inline-block align-top" alt="" />
+    </a>
+
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="form-inline my-2 my-lg-0">
+
+
+        <label *ngIf="user" class="small-title mr-4" (click)="sair()">
+          {{user.name}} (<label class="label-medium color-orange user">Sair</label>)
+        </label>
+
+        <button *ngIf="!user" class="btn btn-outline my-2 my-sm-0 mr-4 action-button outline" type="button"
+          (click)="openLogin()">
+          Entrar na minha conta
         </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- <ul class="navbar-nav">
-
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" href="/home#contato">Contato <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link page-scroll" routerLink="/login">Entrar</a>
-                </li>
-            </ul> -->
-            <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-outline my-2 my-sm-0 action-button outline" type="button"
-                   (click)="openLogin()">
-                 Entrar na minha conta
-                </button>
-            </div>
-        </div>
+        <button *ngIf="showPerguntas" class="btn btn-outline my-2 my-sm-0 action-button outline" type="button"
+          routerLink="/perguntas-frequentes">
+          Perguntas frequentes
+        </button>
+      </div>
     </div>
+
+
+
+  </div>
 </nav>

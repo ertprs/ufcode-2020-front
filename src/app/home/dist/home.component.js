@@ -13,8 +13,9 @@ var form_opcoes_atendimento_component_1 = require("../form-opcoes-atendimento/fo
 var form_pre_cadastro_component_1 = require("../form-pre-cadastro/form-pre-cadastro.component");
 var form_simula_cpf_component_1 = require("../form-simula-cpf/form-simula-cpf.component");
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(dialog) {
+    function HomeComponent(dialog, router) {
         this.dialog = dialog;
+        this.router = router;
         this.color = 'primary';
         this.mode = 'indeterminate';
         this.convenios = ['inss', 'federal', 'estadual'];
@@ -28,7 +29,8 @@ var HomeComponent = /** @class */ (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         // this.preCadastro();
-        this.opcoesAtendimento();
+        // this.opcoesAtendimento();
+        // this.router.navigateByUrl('/dashboard');
     };
     HomeComponent.prototype.scroll = function () {
         var _this = this;
@@ -118,6 +120,9 @@ var HomeComponent = /** @class */ (function () {
             }
             else if (result && result.agendou && result.acao === 'visita') {
                 _this.showAlertConfirma('Visita agendada!', 'Estamos esperando por você.', 'Fechar');
+            }
+            else {
+                _this.router.navigateByUrl('/dashboard');
             }
         });
     };

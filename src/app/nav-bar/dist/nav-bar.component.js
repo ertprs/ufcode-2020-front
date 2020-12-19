@@ -10,10 +10,16 @@ exports.NavBarComponent = void 0;
 var core_1 = require("@angular/core");
 var form_login_component_1 = require("../form-login/form-login.component");
 var NavBarComponent = /** @class */ (function () {
-    function NavBarComponent(dialog) {
+    function NavBarComponent(dialog, router) {
         this.dialog = dialog;
+        this.router = router;
+        this.user = {
+            name: 'Ana Maria Joaquina'
+        };
+        this.showPerguntas = true;
     }
     NavBarComponent.prototype.ngOnInit = function () {
+        console.log(this.user);
     };
     NavBarComponent.prototype.openLogin = function () {
         var dialogRef = this.dialog.open(form_login_component_1.FormLoginComponent, {
@@ -26,6 +32,13 @@ var NavBarComponent = /** @class */ (function () {
             }
         });
     };
+    NavBarComponent.prototype.sair = function () {
+        this.user = null;
+        this.router.navigateByUrl('/home');
+    };
+    __decorate([
+        core_1.Input()
+    ], NavBarComponent.prototype, "showPerguntas");
     NavBarComponent = __decorate([
         core_1.Component({
             selector: 'app-nav-bar',

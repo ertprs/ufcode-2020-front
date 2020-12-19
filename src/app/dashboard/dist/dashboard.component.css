@@ -1,0 +1,48 @@
+.color-orange {
+  color: #ef6c29 !important;
+}
+
+.color-blue {
+  color: #325688 !important;
+}
+
+.color-success {
+  color: forestgreen;
+}
+
+.color-warning {
+  color: orange;
+}
+
+.color-black {
+  color: #000000;
+}
+
+.color-white {
+  color: white;
+}
+
+.color-light {
+  color: #8c8a97 !important;
+}
+
+.font-palanquin-dark {
+  font-family: "Palanquin Dark";
+}
+
+.font-palanquin {
+  font-family: "Palanquin";
+}
+
+.font-roboto {
+  font-family: "Roboto" !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.container-fluid {
+  background-color: #325688;
+  height: 100%;
+}

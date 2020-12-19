@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FormLoginComponent } from '../form-login/form-login.component';
 
 @Component({
@@ -9,12 +10,19 @@ import { FormLoginComponent } from '../form-login/form-login.component';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
-
-  ngOnInit(): void {
+  user = {
+    name: 'Ana Maria Joaquina'
   }
 
-  openLogin(){
+  @Input() showPerguntas = true;
+
+  constructor(private dialog: MatDialog, private router: Router) { }
+
+  ngOnInit(): void {
+    console.log(this.user);
+  }
+
+  openLogin() {
     const dialogRef = this.dialog.open(FormLoginComponent, {
       data: {
         // paramos
@@ -26,6 +34,11 @@ export class NavBarComponent implements OnInit {
 
       }
     });
+  }
+
+  sair() {
+    this.user = null;
+    this.router.navigateByUrl('/home');
   }
 
 }

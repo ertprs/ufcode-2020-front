@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
 import { FormOpcoesAtendimentoComponent } from '../form-opcoes-atendimento/form-opcoes-atendimento.component';
@@ -35,11 +36,13 @@ export class HomeComponent implements OnInit {
 
   ]
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     // this.preCadastro();
-    this.opcoesAtendimento();
+    // this.opcoesAtendimento();
+    // this.router.navigateByUrl('/dashboard');
+
   }
 
   scroll(): void {
@@ -140,6 +143,8 @@ export class HomeComponent implements OnInit {
         this.showAlertConfirma('Ligação agendada!', 'Entraremos em contato em breve.', 'Fechar');
       } else if (result && result.agendou && result.acao === 'visita') {
         this.showAlertConfirma('Visita agendada!', 'Estamos esperando por você.', 'Fechar');
+      } else {
+        this.router.navigateByUrl('/dashboard');
       }
     });
   }

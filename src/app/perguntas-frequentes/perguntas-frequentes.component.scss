@@ -1,0 +1,70 @@
+@import '../../variables.scss';
+
+.container-fluid {
+  background-color: $color-blue;
+  height: 100%;
+  overflow-y: scroll;
+  padding-top: 15rem;
+  padding-bottom: 10rem;
+}
+
+.col-pergunta {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid gainsboro;
+  padding: 2rem 0rem;
+  cursor: pointer;
+
+
+  label,
+  span,
+  div {
+    cursor: pointer;
+  }
+
+
+  b {
+    color: $color-text-dark;
+  }
+
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+
+  .container-fluid {
+    overflow: auto;
+    padding-top: 15rem;
+    padding-bottom: 10rem;
+  }
+
+
+  .card-panel {
+    padding: 3rem;
+    height: 100% !important;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .card-panel {
+    height: 100% !important;
+    padding: 3rem;
+  }
+
+  .container-fluid {
+    padding-top: 15rem;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 1367px) {
+
+  .container-fluid {}
+
+  .card-panel {
+    height: 100%;
+    padding: 5rem;
+  }
+}

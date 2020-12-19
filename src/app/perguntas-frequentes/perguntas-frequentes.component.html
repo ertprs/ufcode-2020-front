@@ -1,0 +1,51 @@
+<app-nav-bar [showPerguntas]=false></app-nav-bar>
+<div class="container-fluid">
+
+  <!-- Simulação do Empréstimo -->
+  <div class="row">
+
+    <div class="col-12 col-md-6 offset-md-3">
+      <div class="card-panel">
+
+        <div class="row">
+          <div class="col text-center">
+            <label class="small-title">
+              Perguntas Frequentes
+            </label>
+          </div>
+        </div>
+
+        <div class="row my-5">
+          <div class="col">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Pesquisar pergunta</mat-label>
+              <input [(ngModel)]="searchText" (change)="changePergunta()" (input)="pesquisaPergunta()"
+                (blur)="blurPergunta()" matInput type="text" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div *ngFor="let p of perguntasShow">
+          <div class="col text-center col-pergunta" (click)="selected = (selected===p.id?null:p.id)">
+            <label class="label-medium text-left d-flex justify-content-between">
+              <b>{{p.question}}</b>
+              <span class="material-icons">
+                keyboard_arrow_right
+              </span>
+            </label>
+            <label *ngIf="selected === p.id" class="label-default text-left">
+              {{p.answer}}
+            </label>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+</div>

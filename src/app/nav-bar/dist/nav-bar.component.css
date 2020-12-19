@@ -42,6 +42,14 @@
   cursor: pointer;
 }
 
+.user {
+  cursor: pointer;
+}
+
+.user:hover {
+  text-decoration: underline;
+}
+
 nav {
   background-color: white !important;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);

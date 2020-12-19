@@ -24,6 +24,8 @@ import { FormPreCadastroComponent } from './form-pre-cadastro/form-pre-cadastro.
 import { FormOpcoesAtendimentoComponent } from './form-opcoes-atendimento/form-opcoes-atendimento.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogAlertComponent } from './dialog-alert/dialog-alert.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PerguntasFrequentesComponent } from './perguntas-frequentes/perguntas-frequentes.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -36,7 +38,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     FormSimulaCpfComponent,
     FormPreCadastroComponent,
     FormOpcoesAtendimentoComponent,
-    DialogAlertComponent
+    DialogAlertComponent,
+    DashboardComponent,
+    PerguntasFrequentesComponent
   ],
   imports: [
     BrowserModule,
