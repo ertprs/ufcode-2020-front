@@ -14,7 +14,7 @@ export class AuthService {
 
   private _dadosUser = new BehaviorSubject<any>(null);
 
-  public get dadosUser() {
+  public get dadosUser() { 
     return this._dadosUser.asObservable().pipe(
       map((r) => {
         return r;

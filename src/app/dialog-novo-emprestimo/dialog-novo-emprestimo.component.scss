@@ -1,0 +1,45 @@
+.btn-close {
+  position: absolute;
+  right: 0px;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.header {
+  position: relative;
+}
+
+.item-resultado {
+  &.selected {
+    border-color: #28bd44;
+    box-shadow: 0 0 4px #28bd44;
+  }
+
+  img {
+    width: auto;
+    height: 50px;
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+  .mat-dialog-content {
+    width: uneset;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .mat-dialog-content {
+    width: uneset;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 1367px) {
+  .mat-dialog-content {
+    width: 500px;
+    min-height: 80vh;
+  }
+}

@@ -8,6 +8,13 @@
   text-decoration: underline;
 }
 
+a {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
 
 nav {
   background-color: white !important;

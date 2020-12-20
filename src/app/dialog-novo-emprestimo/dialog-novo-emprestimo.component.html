@@ -1,0 +1,92 @@
+<div class="dialog-agenda container">
+
+
+  <div mat-dialog-header class="row d-flex justify-content-center header">
+    <span class="material-icons cursor-pointer btn-close" (click)="close()">
+      close
+    </span>
+  </div>
+
+
+
+  <div mat-dialog-content>
+
+
+    <!-- Login -->
+    <div class="row mt-5">
+
+      <div class="col">
+        <label class="small-title">
+          Nova solicitação
+        </label>
+      </div>
+
+    </div>
+    <div *ngIf="!loading2">
+      <div class="row mt-5">
+        <div class="col">
+          <label class="label-medium">De quanto precisa?</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <span matPrefix>R$ &nbsp;</span>
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]="emprestimo_valor" required matInput
+              type="number" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row mt-5" *ngIf="!loading">
+        <div class="col mt-2 d-flex justify-content-end">
+          <button (click)="pesquisar()" class="action-button outline md">
+            Pesquisar resultados
+          </button>
+        </div>
+      </div>
+
+      <div class="row mt-5 d-flex justify-content-center align-items-center">
+        <mat-progress-spinner *ngIf="loading" [color]="color" [mode]="mode">
+        </mat-progress-spinner>
+      </div>
+
+      <div *ngIf="!loading" class="row px-3 d-flex justify-content-center align-items-center">
+
+        <div class="w-100 px-2" *ngIf="!loading && resultados.length > 0">
+          <label class="label-medium d-block">Escolha uma opção</label>
+        </div>
+
+        <div class="row px-4">
+          <div class="col-6 p-0" *ngFor="let r of resultados">
+            <div class="item-resultado" (click)="selected = r.name" [ngClass]="{'selected': selected === r.name}">
+              <div class="row">
+                <img [src]="r.image">
+              </div>
+              <div class="row">
+                <strong><label class="label-medium color-blue">
+                    {{r.numInstallments}} x
+                    R$ {{r.installmentValue.toFixed(2).toString().replace(".", ",")}}</label></strong>
+              </div>
+              <div class="row">
+                <label class="label-default text-center">Juros: R$
+                  {{r.interestRate.toFixed(2).toString().replace(".", ",")}} ao mês</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-5 w-100" *ngIf="!loading && resultados.length > 0">
+          <div class="col px-2 mt-2 d-flex justify-content-end">
+            <button [disabled]="!selected" (click)="escolher()" class="action-button md">
+              Solicitar empréstimo
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="loading2" class="row mt-5 d-flex justify-content-center align-items-center">
+      <mat-progress-spinner [color]="color" [mode]="mode">
+      </mat-progress-spinner>
+    </div>
+
+  </div>

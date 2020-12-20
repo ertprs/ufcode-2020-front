@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { map, tap } from 'rxjs/operators';
 
 export class respostaCorreio {
   cep: string;
@@ -16,10 +17,30 @@ export class respostaCorreio {
   siafi: string;
 }
 
+export class objLoan {
+  owner: string;
+  value: number;
+  bankName: string;
+  bankImage: string;
+  numInstallments: number;
+  interestRate: number;
+  installmentValue: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
+
+  private _emprestimos = new BehaviorSubject<any>(null);
+
+  public get emprestimos() {
+    return this._emprestimos.asObservable().pipe(
+      map((r) => {
+        return r;
+      })
+    );
+  }
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,5 +52,19 @@ export class UtilsService {
     return this.httpClient.get(environment.urlApi + 'banks?convenio=' + convenio + '&valor=' + valor);
   }
 
+  solicitaEmprestimo(loan: objLoan) {
+    return this.httpClient.post(environment.urlApi + 'loan-requests', loan);
+  }
+
+  buscaEmprestimos(usuario) {
+
+    return this.httpClient.get(environment.urlApi + 'loan-requests?owner=' + usuario.user._id, {
+      headers: new HttpHeaders({
+        Authorization: usuario.token
+      })
+    }).pipe(tap(res => {
+      this._emprestimos.next(res);
+    }));
+  }
 
 }
