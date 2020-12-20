@@ -1,0 +1,29 @@
+export class UserModel {
+    isLead: boolean;
+    name: string;
+    phone: string;
+    cpf: string;
+    cep: string;
+    email: string;
+    value: string;
+    gender: string;
+    password: string;
+    birthday: Date;
+    maritalStatus: string;
+    motherName: string;
+    city: string;
+    neighborhood: string;
+    address: string;
+    complement: string;
+    state: string;
+    number: string;
+    rg: string;
+    rgOrgao: string;
+    rgUF: string;
+    rgData: string;
+    bank: string;
+    agency: string;
+    income: string;
+    margin: string;
+    benefitType: string;
+}

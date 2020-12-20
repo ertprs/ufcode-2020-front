@@ -1,0 +1,50 @@
+@import "../../variables.scss";
+
+.line {
+  margin-bottom: 8rem;
+}
+
+.bar {
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .box {
+    flex-direction: column;
+  }
+}
+
+.ball {
+  background: #cbcecf;
+  border-radius: 100%;
+  border: 3px solid white;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  color: white !important;
+  cursor: pointer;
+
+  &.active {
+    background: $color-orange;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+hr {
+  margin-right: 7rem;
+  margin-left: 6rem;
+  margin-top: -44px;
+}
+
+.material-icons {
+  font-size: 2rem;
+}

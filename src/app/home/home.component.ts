@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.preCadastro();
+    // this.preCadastro();
     // this.opcoesAtendimento();
     // this.router.navigateByUrl('/dashboard');
 

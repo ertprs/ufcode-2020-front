@@ -28,6 +28,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerguntasFrequentesComponent } from './perguntas-frequentes/perguntas-frequentes.component';
 import { UtilsService } from './utils.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { CadastroCompletoComponent } from './dashboard/cadastro-completo/cadastro-completo.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -42,7 +44,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     FormOpcoesAtendimentoComponent,
     DialogAlertComponent,
     DashboardComponent,
-    PerguntasFrequentesComponent
+    PerguntasFrequentesComponent,
+    ProgressBarComponent,
+    CadastroCompletoComponent
   ],
   imports: [
     BrowserModule,

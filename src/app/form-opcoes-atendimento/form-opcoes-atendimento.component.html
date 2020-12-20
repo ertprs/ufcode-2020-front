@@ -102,7 +102,7 @@
         <div class="mt-2">
           <mat-form-field appearance="outline" class="w-100">
             <mat-label>Escolha a data</mat-label>
-            <input matInput [matDatepicker]="picker2" name="dataFinal" />
+            <input matInput mask="00/00/0000" [matDatepicker]="picker2" name="dataFinal" />
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>

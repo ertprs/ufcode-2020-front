@@ -1,0 +1,31 @@
+<div class="line d-none d-lg-block" >
+    <div class="bar">
+      <div
+        *ngFor="let p of pages; let i = index"
+        class="d-flex justify-content-start box"
+      >
+        <div
+          class="ball"
+          *ngIf="currentPage - i < 1"
+          [ngClass]="{ active: currentPage === i }"
+          (click)="clickSelect(i)"
+        >
+          {{ i + 1 }}
+        </div>
+  
+        <div
+          class="ball active"
+          *ngIf="currentPage - i >= 1"
+          (click)="clickSelect(i)"
+        >
+         <span class="material-icons">check</span>
+        </div>
+  
+        <label class="label-tiny font-roboto" (click)="clickSelect(i)">{{
+          pages[i]
+        }}</label>
+      </div>
+    </div>
+    <hr />
+  </div>
+  

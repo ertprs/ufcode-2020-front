@@ -1,0 +1,339 @@
+<app-nav-bar></app-nav-bar>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-8 offset-2">
+      <div class="card-panel" #panel>
+
+        <label class="small-title d-block">
+          Precisamos completar o seu cadastro
+        </label>
+
+        <label class="label-default w-50 mt-2 mb-5">
+          Relaxa! Seus dados estão seguros com a gente. Vamos usar apenas o necessário para concretizar o seu pedido.
+        </label>
+
+        <div class="progress-bar-div">
+          <app-progress-bar [pages]="progressPages" [currentPage]="currentPage" (pageChange)="currentPage = $event">
+          </app-progress-bar>
+        </div>
+
+
+
+        <!---------- PAGINA 1 DO CADASTRO: INFORMAÇÕES ---------->
+
+        <form [formGroup]="formPrimeiro" [ngStyle]="{'display': currentPage === 0 ? 'block' : 'none' }">
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Nome</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="name" required matInput type="text" />
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">CPF</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="cpf" required matInput mask="000.000.000-00" type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">E-mail</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="email" type="email" />
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Telefone celular</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="phone" mask="(00) 00000-0000" type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Sexo</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="gender">
+                  <mat-option value="masculino">
+                    Masculino
+                  </mat-option>
+                  <mat-option value="feminino">
+                    Feminino
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Data Nascimento</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput [matDatepicker]="picker2" formControlName="birthday" />
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Estado civil</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="maritalStatus">
+                  <mat-option style="text-transform: capitalize" value="estadoCivil"
+                    *ngFor="let estadoCivil of estadosCivis">
+                    {{estadoCivil}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Nome da Mãe</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="motherName" type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+        </form>
+
+
+        <!---------- PAGINA 2 DO CADASTRO: ENDEREÇO ---------->
+
+
+        <form [formGroup]="formSegundo" [ngStyle]="{'display': currentPage === 1 ? 'block' : 'none' }">
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">CEP</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="cep" (change)="buscaCEP()" mask="00.000-000" required matInput type="text" />
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Rua</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="address" required matInput type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-2 offset-2">
+              <label class="label-medium">Número</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="number" type="number" />
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <label class="label-medium">Complemento</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="complement" type="text" />
+              </mat-form-field>
+            </div>
+            <div class="col-3">
+              <label class="label-medium">Bairro</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="neighborhood" type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Cidade</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input required matInput formControlName="city" type="text" />
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">UF</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="state">
+                  <mat-option [value]="state" *ngFor="let state of states">
+                    {{state}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+        </form>
+
+
+
+
+        <!---------- PAGINA 3 DO CADASTRO: IDENTIDADE ---------->
+
+
+        <form [formGroup]="formTerceiro" [ngStyle]="{'display': currentPage === 2 ? 'block' : 'none' }">
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Número do RG (Identidade)</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="rg" required matInput type="text" />
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Órgão Emissor do RG</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="rgOrgao" required matInput type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Unidade Federativa (Estado)</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="rgUF">
+                  <mat-option [value]="state" *ngFor="let state of states">
+                    {{state}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-4">
+              <label class="label-medium">Data da Emissão</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput [matDatepicker]="picker3" formControlName="rgData" />
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+        </form>
+
+
+
+
+        <!---------- PAGINA 4 DO CADASTRO: DADOS BANCARIOS ---------->
+
+
+        <form [formGroup]="formQuarto" [ngStyle]="{'display': currentPage === 3 ? 'block' : 'none' }">
+          <div class="row mt-5">
+            <div class="col-4 offset-2">
+              <label class="label-medium">Banco</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="bank">
+                  <mat-option [value]="bank" *ngFor="let bank of banks">
+                    {{bank}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="label-medium">Agência</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="agency" required matInput type="text" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-2 offset-2">
+              <label class="label-medium">Conta</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="account" required matInput type="text" />
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <label class="label-medium">Tipo benefício</label>
+
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="benefitType" required>
+                  <mat-option *ngFor="let c of convenios" [value]="c">
+                    {{c}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-3">
+              <label class="label-medium">Renda mensal</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <span matPrefix>R$ &nbsp;</span>
+                <input formControlName="income" required matInput type="number" />
+              </mat-form-field>
+            </div>
+
+          </div>
+
+        </form>
+
+
+
+        <!---------- PAGINA 5 DO CADASTRO: SENHA ---------->
+
+
+        <form [formGroup]="formQuinto" [ngStyle]="{'display': currentPage === 4 ? 'block' : 'none' }">
+
+          <!-- <label class="small-title d-block">
+            A sua senha é muito importante!
+          </label>
+
+          <label class="label-default d-block">
+            • Pense em uma senha que você terá facilidade para se lembrar no futuro.
+          </label>
+          <label class="label-default d-block">
+            • É uma boa idéia anotar a senha em algum lugar seguro.
+          </label>
+
+          <label class="label-default d-block">
+            • Não compartilhe sua senha com ninguém.
+          </label> -->
+
+          <div class="row mt-5">
+            <div class="col-6 offset-3">
+              <label class="label-medium">Digite a senha</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="password" [type]="hide1 ? 'password' : 'text'" required matInput type="text" />
+                <span class="material-icons" matSuffix (click)="hide1 = !hide1">
+                  {{ hide1 ? "visibility_off" : "visibility" }}
+                </span>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-6 offset-3">
+              <label class=" label-medium">Confirme a senha</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="c_password" [type]="hide2 ? 'password' : 'text'" required matInput
+                  type="text" />
+                <span class="material-icons" matSuffix (click)="hide2 = !hide2">
+                  {{ hide1 ? "visibility_off" : "visibility" }}
+                </span>
+              </mat-form-field>
+            </div>
+          </div>
+
+
+
+
+        </form>
+
+
+
+
+
+        <div class="row mt-5">
+          <div class="col-12 mt-5 d-flex justify-content-end">
+            <button (click)="nextPage()" class="action-button md">
+              {{currentPage === 4 ? 'Finalizar cadastro' : 'Salvar e avançar' }}
+            </button>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
