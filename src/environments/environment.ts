@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // urlApi: 'https://ufcode.cloudno.de/'
-  urlApi: 'http://localhost:3000/'
+  urlApi: 'https://ufcode.cloudno.de/'
+  // urlApi: 'http://localhost:3000/'
 };
 
 /*
