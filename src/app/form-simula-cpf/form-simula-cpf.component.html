@@ -22,13 +22,16 @@
 
             <div class="item-resultado">
               <div class="row">
-                <img [src]="banco.banco_img">
+                <img [src]="banco.image">
               </div>
               <div class="row">
-                <strong><label class="label-medium color-blue">R$ {{banco.banco_valor}}</label></strong>
+                <strong><label class="label-medium color-blue">
+                    {{banco.numInstallments}} x
+                    R$ {{banco.installmentValue.toFixed(2).toString().replace(".", ",")}}</label></strong>
               </div>
               <div class="row">
-                <label class="label-default">Juros: {{banco.banco_taxa}} ao mês</label>
+                <label class="label-default text-center">Juros: R$
+                  {{banco.interestRate.toFixed(2).toString().replace(".", ",")}} ao mês</label>
               </div>
             </div>
 

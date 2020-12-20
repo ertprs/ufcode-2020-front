@@ -1,12 +1,13 @@
 @import '../../variables.scss';
 
 .container-fluid {
-  background-color: $color-blue;
+  // background-color: $color-blue;
+  background: repeating-linear-gradient(45deg, $color-blue, #3e67a0 10px);
   height: 100%;
   padding-top: 10rem;
 }
 
-.card-panel{
+.card-panel {
   height: 100%;
 }
 

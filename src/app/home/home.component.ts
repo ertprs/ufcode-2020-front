@@ -3,11 +3,13 @@ import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
 import { FormOpcoesAtendimentoComponent } from '../form-opcoes-atendimento/form-opcoes-atendimento.component';
 import { FormPreCadastroComponent } from '../form-pre-cadastro/form-pre-cadastro.component';
 import { FormSimulaCpfComponent } from '../form-simula-cpf/form-simula-cpf.component';
+import { UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-home',
@@ -36,13 +38,10 @@ export class HomeComponent implements OnInit {
 
   ]
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(private dialog: MatDialog, private router: Router, private utilsService: UtilsService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    // this.preCadastro();
-    // this.opcoesAtendimento();
-    // this.router.navigateByUrl('/dashboard');
-
+    this.authService.autoLogin();
   }
 
   scroll(): void {
@@ -62,38 +61,15 @@ export class HomeComponent implements OnInit {
     }
 
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
+
+    this.utilsService.buscaBancos(this.convenio, this.emprestimo_valor).subscribe(res => {
+      this.resultadosEncontrados = res;
+      this.ofertas = true;
       this.scroll();
-
-
-    }, 200);
-    this.ofertas = true;
-    this.resultadosEncontrados = [{
-      banco_img: 'https://api.infinitesales.com.br/storage/instituicao/pan.png',
-      banco_nome: 'Banco PAN',
-      banco_valor: this.emprestimo_valor,
-      banco_taxa: "1,80%"
-    },
-
-    {
-      banco_img: 'https://api.infinitesales.com.br/storage/instituicao/20200828114119png',
-      banco_nome: 'Banco Bmg',
-      banco_valor: this.emprestimo_valor,
-      banco_taxa: "1,80%"
-    },
-    {
-      banco_img: 'https://api.infinitesales.com.br/storage/instituicao/20200828122302png',
-      banco_nome: 'Banco Bradesco',
-      banco_valor: this.emprestimo_valor,
-      banco_taxa: "1,80%"
-    },
-    {
-      banco_img: 'https://api.infinitesales.com.br/storage/instituicao/20200828122833png',
-      banco_nome: 'Banco Itau',
-      banco_valor: this.emprestimo_valor,
-      banco_taxa: "1,80%"
-    }];
+      this.loading = false;
+    }, err => {
+      this.loading = false;
+    })
   }
 
 
@@ -106,9 +82,22 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result && result.verificar && result.cadastrar) {
+      if (result && result.verificar) {
         this.usuario_cpf = result.usuario_cpf;
-        this.preCadastro();
+        if (result.cadastrar) {
+          this.preCadastro();
+        } else {
+          this.login(true);
+        }
+      }
+    });
+  }
+
+  login(tentouSimular?) {
+    const dialogRef = this.dialog.open(FormLoginComponent, {
+      data: {
+        tentouSimular,
+        usuario_cpf: this.usuario_cpf
       }
     });
   }

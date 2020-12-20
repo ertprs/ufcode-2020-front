@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-form-simula-cpf',
@@ -16,11 +17,11 @@ export class FormSimulaCpfComponent implements OnInit {
     public data: {
       banco
     },
+    private authService: AuthService,
     public dialogRef: MatDialogRef<FormSimulaCpfComponent>
   ) {
 
     this.banco = data.banco;
-
   }
 
   ngOnInit(): void { }
@@ -32,10 +33,19 @@ export class FormSimulaCpfComponent implements OnInit {
   }
 
   verificaCPF() {
-    this.dialogRef.close({
-      verificar: true,
-      cadastrar: true,
-      usuario_cpf: this.usuario_cpf,
-    });
+
+    console.log(this.usuario_cpf);
+
+    this.authService.verificarCPF(this.usuario_cpf).subscribe(res => {
+      if (res) {
+        this.dialogRef.close({
+          verificar: true,
+          cadastrar: !res['ok'],
+          usuario_cpf: this.usuario_cpf,
+        });
+      }
+    }, error => {
+
+    })
   }
 }

@@ -30,6 +30,7 @@ import { UtilsService } from './utils.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 import { CadastroCompletoComponent } from './dashboard/cadastro-completo/cadastro-completo.component';
+import { DialogSenhaComponent } from './dialog-senha/dialog-senha.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -46,7 +47,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     DashboardComponent,
     PerguntasFrequentesComponent,
     ProgressBarComponent,
-    CadastroCompletoComponent
+    CadastroCompletoComponent,
+    DialogSenhaComponent
   ],
   imports: [
     BrowserModule,

@@ -72,13 +72,16 @@
           <div class="col-6 p-0" *ngFor="let r of resultadosEncontrados">
             <div class="item-resultado" (click)="validaCpf(r)">
               <div class="row">
-                <img [src]="r.banco_img">
+                <img [src]="r.image">
               </div>
               <div class="row">
-                <strong><label class="label-medium color-blue">R$ {{r.banco_valor}}</label></strong>
+                <strong><label class="label-medium color-blue">
+                    {{r.numInstallments}} x
+                    R$ {{r.installmentValue.toFixed(2).toString().replace(".", ",")}}</label></strong>
               </div>
               <div class="row">
-                <label class="label-default text-center">Juros: {{r.banco_taxa}} ao mês</label>
+                <label class="label-default text-center">Juros: R$
+                  {{r.interestRate.toFixed(2).toString().replace(".", ",")}} ao mês</label>
               </div>
             </div>
           </div>

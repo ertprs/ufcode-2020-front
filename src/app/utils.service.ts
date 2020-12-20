@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 export class respostaCorreio {
   cep: string;
@@ -24,6 +25,10 @@ export class UtilsService {
 
   buscaEnderecoCep(cep: string): Observable<respostaCorreio> {
     return this.httpClient.get<respostaCorreio>("https://viacep.com.br/ws/" + cep + "/json/");
+  }
+
+  buscaBancos(convenio, valor): Observable<any> {
+    return this.httpClient.get(environment.urlApi + 'banks?convenio=' + convenio + '&valor=' + valor);
   }
 
 

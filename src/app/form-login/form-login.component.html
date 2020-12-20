@@ -19,14 +19,16 @@
       <div class="col">
         <div class="row">
           <div class="col text-center">
-            <label class="small-title">
+            <label class="small-title d-block">
               Digite os seus dados para entrar
+            </label>
+            <label *ngIf="data.tentouSimular" class="label-default">
+              O CPF já está cadastrado na Empresta.
             </label>
           </div>
         </div>
 
         <form>
-
           <div class="row mt-5">
             <div class="col mt-2">
               <label class="label-medium">CPF</label>
@@ -49,7 +51,7 @@
 
           <div class="row mt-5">
             <div class="col mt-5">
-              <button class="action-button md w-100" type="submit">
+              <button (click)="logar()" class="action-button md w-100" type="submit">
                 Entrar
               </button>
             </div>

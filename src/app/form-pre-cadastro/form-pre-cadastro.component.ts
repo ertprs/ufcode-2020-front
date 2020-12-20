@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from '../auth.service';
 import { FormSimulaCpfComponent } from '../form-simula-cpf/form-simula-cpf.component';
 import { respostaCorreio, UtilsService } from '../utils.service';
 
@@ -20,6 +21,7 @@ export class FormPreCadastroComponent implements OnInit {
       emprestimo_valor
     },
     private utilsService: UtilsService,
+    private authService: AuthService,
     public dialogRef: MatDialogRef<FormSimulaCpfComponent>
   ) {
 
@@ -28,25 +30,31 @@ export class FormPreCadastroComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      usuario_nome: new FormControl(null, Validators.required),
-      usuario_cpf: new FormControl(this.data.usuario_cpf, Validators.required),
-      usuario_celular: new FormControl(null, Validators.required),
-      usuario_email: new FormControl(null, Validators.required),
-      usuario_cep: new FormControl(null, Validators.required),
-      emprestimo_valor: new FormControl(this.data.emprestimo_valor, Validators.required),
+      name: new FormControl(null, Validators.required),
+      cpf: new FormControl(this.data.usuario_cpf, Validators.required),
+      phone: new FormControl(null, Validators.required),
+      email: new FormControl(null, Validators.required),
+      cep: new FormControl(null, Validators.required),
     })
   }
 
   preCadastro() {
     if (this.form.valid) {
-      this.utilsService.buscaEnderecoCep(this.form.get('usuario_cep').value).subscribe((res: respostaCorreio) => {
+      this.utilsService.buscaEnderecoCep(this.form.get('cep').value).subscribe((res: respostaCorreio) => {
         let enderecoCep = {
           endereco: res.logradouro,
           bairro: res.bairro,
           localidade: res.localidade,
           uf: res.uf
         }
+
         this.close(true, enderecoCep);
+
+        this.authService.cadastrar(this.form.value).subscribe(res => {
+          console.log(res);
+        });
+
+
       })
     }
   }

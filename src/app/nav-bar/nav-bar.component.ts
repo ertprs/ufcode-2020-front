@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { FormLoginComponent } from '../form-login/form-login.component';
 
 @Component({
@@ -10,16 +11,17 @@ import { FormLoginComponent } from '../form-login/form-login.component';
 })
 export class NavBarComponent implements OnInit {
 
-  user = {
-    name: 'Ana Maria Joaquina'
-  }
+  user = null;
 
   @Input() showPerguntas = true;
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.user);
+    this.authService.dadosUser.subscribe(user => {
+      if (!user) return
+      this.user = user.user;
+    })
   }
 
   openLogin() {
@@ -37,6 +39,7 @@ export class NavBarComponent implements OnInit {
   }
 
   sair() {
+    this.authService.sair();
     this.user = null;
     this.router.navigateByUrl('/home');
   }
