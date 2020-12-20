@@ -171,13 +171,13 @@
         <form [formGroup]="formTerceiro" [ngStyle]="{'display': currentPage === 2 ? 'block' : 'none' }">
           <div class="row mt-5">
             <div class="col-4 offset-2">
-              <label class="label-medium">Número do RG (Identidade)</label>
+              <label class="label-medium">Número do RG</label>
               <mat-form-field appearance="outline" class="w-100">
                 <input formControlName="rg" required matInput type="text" />
               </mat-form-field>
             </div>
             <div class="col-4">
-              <label class="label-medium">Órgão Emissor do RG</label>
+              <label class="label-medium">Órgão Emissor</label>
               <mat-form-field appearance="outline" class="w-100">
                 <input formControlName="rgOrgao" required matInput type="text" />
               </mat-form-field>
@@ -186,7 +186,7 @@
 
           <div class="row mt-5">
             <div class="col-4 offset-2">
-              <label class="label-medium">Unidade Federativa (Estado)</label>
+              <label class="label-medium">Unidade Federativa</label>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-select formControlName="rgUF">
                   <mat-option [value]="state" *ngFor="let state of states">

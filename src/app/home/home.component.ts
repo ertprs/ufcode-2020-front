@@ -3,6 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
+import { timeStamp } from 'console';
 import { AuthService } from '../auth.service';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
@@ -41,7 +42,11 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private utilsService: UtilsService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.autoLogin();
+    this.authService.dadosUser.subscribe(dados => {
+      if (dados) {
+        this.router.navigateByUrl('dashboard/emprestimos');
+      }
+    })
   }
 
   scroll(): void {

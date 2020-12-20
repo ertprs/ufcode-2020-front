@@ -27,6 +27,7 @@ export class AuthService {
       cpf, password
     }).pipe(tap(res => {
       this.usuario_logado = res;
+
       this._dadosUser.next(res);
       sessionStorage.setItem("usuario_logado", JSON.stringify(res));
     }));
@@ -39,16 +40,27 @@ export class AuthService {
   cadastrar(dados) {
     return this.httpClient.post(environment.urlApi + 'users', dados).pipe(tap(res => {
       this.usuario_logado = res;
+
+      this._dadosUser.next(res);
+
+      sessionStorage.setItem("usuario_logado", JSON.stringify(res));
+    }));
+  }
+
+  updateUser(dados) {
+    return this.httpClient.patch(environment.urlApi + 'users/' + this.usuario_logado.user._id, dados).pipe(tap(res => {
+      this.usuario_logado = res;
       this._dadosUser.next(res);
       sessionStorage.setItem("usuario_logado", JSON.stringify(res));
     }));
   }
 
   autoLogin() {
-    let user = sessionStorage.getItem("usuario_logado");
-    console.log(user)
+    let user = JSON.parse(sessionStorage.getItem("usuario_logado"));
+    this.usuario_logado = user;
+    console.log(this.usuario_logado);
     if (user) {
-      this._dadosUser.next(JSON.parse(user));
+      this._dadosUser.next(user);
     }
   }
 

@@ -18,6 +18,8 @@ export class NavBarComponent implements OnInit {
   constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.authService.autoLogin();
+
     this.authService.dadosUser.subscribe(user => {
       if (!user) return
       this.user = user.user;

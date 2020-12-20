@@ -1,0 +1,23 @@
+<app-nav-bar></app-nav-bar>
+<div class="container-fluid">
+
+  <div class="row h-100">
+    <div class="col-8 offset-2">
+      <div class="card-panel" #panel>
+
+        <label class="small-title d-block">
+          Minhas solicitações de empréstimo
+        </label>
+
+
+        <div class="row" *ngIf="emprestimos.length === 0">
+          <div class="col d-flex justify-content-between align-items-center">
+            <label class="label-medium">Você ainda não fez nenhuma solicitação</label>
+            <button class="action-button">QUERO UM EMPRÉSTIMO</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

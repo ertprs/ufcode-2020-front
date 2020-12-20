@@ -1,7 +1,7 @@
 @import '../../../variables.scss';
 
 .container-fluid {
-  background-color: $color-blue;
+  background: repeating-linear-gradient(45deg, $color-blue, #3e67a0 10px);
   height: 100%;
   padding-top: 15rem;
   padding-bottom: 15rem;

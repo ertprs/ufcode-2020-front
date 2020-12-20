@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { DialogAlertComponent } from 'src/app/dialog-alert/dialog-alert.component';
 import { ProgressBarComponent } from 'src/app/progress-bar/progress-bar.component';
 import { respostaCorreio, UtilsService } from 'src/app/utils.service';
@@ -83,10 +84,15 @@ export class CadastroCompletoComponent implements OnInit {
   @ViewChild('panel') panel: ElementRef;
   @ViewChild(ProgressBarComponent) progressBarComponent;
 
-  constructor(private router: Router, private utilsService: UtilsService, private dialog: MatDialog) { }
+  constructor(private router: Router, private authService: AuthService, private utilsService: UtilsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.inicializaForms();
+    this.authService.dadosUser.subscribe(user => {
+      if (user && user.user && !user.user.isLead) {
+        this.router.navigateByUrl('dashboard/emprestimos');
+      }
+    })
   }
 
 
@@ -228,7 +234,9 @@ export class CadastroCompletoComponent implements OnInit {
 
     let objUser = this.montaObjUser();
 
-    console.log(objUser);
+    this.authService.updateUser(objUser).subscribe(res => {
+      this.router.navigateByUrl('/dashboard/emprestimos')
+    })
 
   }
 
