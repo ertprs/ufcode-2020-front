@@ -25,7 +25,7 @@ export class FormPreCadastroComponent implements OnInit {
     public dialogRef: MatDialogRef<FormSimulaCpfComponent>
   ) {
 
-
+    this.authService.valor_pre_selecionado;
   }
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class FormPreCadastroComponent implements OnInit {
       phone: new FormControl(null, Validators.required),
       email: new FormControl(null, Validators.required),
       cep: new FormControl(null, Validators.required),
+      // valor: new FormControl(this.authService.valor_pre_selecionado, Validators.required)
     })
   }
 
@@ -49,12 +50,11 @@ export class FormPreCadastroComponent implements OnInit {
         }
 
         this.close(true, enderecoCep);
+        // this.authService.valor_pre_selecionado = this.form.get("valor").value;
 
         this.authService.cadastrar(this.form.value).subscribe(res => {
           console.log(res);
         });
-
-
       })
     }
   }

@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth.service';
 import { DialogAlertComponent } from 'src/app/dialog-alert/dialog-alert.component';
 import { ProgressBarComponent } from 'src/app/progress-bar/progress-bar.component';
 import { respostaCorreio, UtilsService } from 'src/app/utils.service';
+import { updateHeritageClause } from 'typescript';
 import { UserModel } from './user-model';
 
 @Component({
@@ -72,11 +73,46 @@ export class CadastroCompletoComponent implements OnInit {
 
   convenios = ['inss', 'federal', 'estadual']
 
-  formPrimeiro: FormGroup;
-  formSegundo: FormGroup;
-  formTerceiro: FormGroup;
-  formQuarto: FormGroup;
-  formQuinto: FormGroup;
+  formPrimeiro = new FormGroup({
+    name: new FormControl(null, Validators.required),
+    cpf: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
+    phone: new FormControl(null, Validators.required),
+    gender: new FormControl(null, Validators.required),
+    birthday: new FormControl(null, Validators.required),
+    maritalStatus: new FormControl(null, Validators.required),
+    motherName: new FormControl(null, Validators.required),
+  });
+
+  formSegundo = new FormGroup({
+    cep: new FormControl(null, Validators.required),
+    address: new FormControl(null, Validators.required),
+    number: new FormControl(null, Validators.required),
+    complement: new FormControl(null, Validators.required),
+    neighborhood: new FormControl(null, Validators.required),
+    city: new FormControl(null, Validators.required),
+    state: new FormControl(null, Validators.required),
+  });
+
+  formTerceiro = new FormGroup({
+    rg: new FormControl(null, Validators.required),
+    rgOrgao: new FormControl(null, Validators.required),
+    rgUF: new FormControl(null, Validators.required),
+    rgData: new FormControl(null, Validators.required),
+  });
+
+  formQuarto = new FormGroup({
+    bank: new FormControl(null, Validators.required),
+    agency: new FormControl(null, Validators.required),
+    account: new FormControl(null, Validators.required),
+    income: new FormControl(null, Validators.required),
+    benefitType: new FormControl(null, Validators.required),
+  });
+
+  formQuinto = new FormGroup({
+    password: new FormControl(null, Validators.required),
+    c_password: new FormControl(null, Validators.required)
+  });
 
   hide1 = true;
   hide2 = true;
@@ -87,22 +123,37 @@ export class CadastroCompletoComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService, private utilsService: UtilsService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.inicializaForms();
     this.authService.dadosUser.subscribe(user => {
+
       if (user && user.user && !user.user.isLead) {
         this.router.navigateByUrl('dashboard/emprestimos');
+        return;
       }
+
+      let hasUser = sessionStorage.getItem("usuario_logado");
+      console.log(hasUser);
+
+      if (!hasUser) {
+        this.router.navigateByUrl('home');
+        return;
+      }
+
+      this.inicializaForms();
+
     })
   }
 
 
   inicializaForms(): void {
 
+    let _user = this.authService.usuario_logado.user;
+
+
     this.formPrimeiro = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      cpf: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
-      phone: new FormControl(null, Validators.required),
+      name: new FormControl(_user.name, Validators.required),
+      cpf: new FormControl(_user.cpf, Validators.required),
+      email: new FormControl(_user.email, Validators.required),
+      phone: new FormControl(_user.phone, Validators.required),
       gender: new FormControl(null, Validators.required),
       birthday: new FormControl(null, Validators.required),
       maritalStatus: new FormControl(null, Validators.required),
@@ -110,7 +161,7 @@ export class CadastroCompletoComponent implements OnInit {
     });
 
     this.formSegundo = new FormGroup({
-      cep: new FormControl(null, Validators.required),
+      cep: new FormControl(_user.cep, Validators.required),
       address: new FormControl(null, Validators.required),
       number: new FormControl(null, Validators.required),
       complement: new FormControl(null, Validators.required),

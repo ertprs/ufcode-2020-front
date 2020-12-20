@@ -1,14 +1,8 @@
 <div class="dialog-agenda container">
   <div class="row d-flex justify-content-center header">
-    <!-- <span class="material-icons icon color-success" *ngIf="data.success">
-      check
-    </span>
-    <span class="material-icons icon color-warning" *ngIf="data.warning">
-      warning
-    </span>
-    <span class="material-icons icon color-biocentro" *ngIf="data.error">
-      block
-    </span> -->
+
+
+    <img class="password" src="../../assets/password.svg" />
   </div>
 
   <div class="row d-flex justify-content-center mt-4">
@@ -17,16 +11,30 @@
 
   <div mat-dialog-content>
     <div class="row d-flex justify-content-center mt-4">
-      <p class="label-default text-muted">
-        <!-- {{ data.text }} -->
-      </p>
+      <!-- <p class="label-default text-muted">
+         {{ data.text }}
+      </p> -->
+      <label class="small-title  d-block">
+        A sua senha é muito importante!
+      </label>
+
+      <label class="label-default w-100  d-block">
+        • Pense em uma senha que você consiga se lembrar no futuro.
+      </label>
+      <label class="label-default w-100  d-block">
+        • É uma boa idéia anotar a senha em algum lugar seguro.
+      </label>
+
+      <label class="label-default  w-100 d-block">
+        • Não compartilhe sua senha com ninguém.
+      </label>
     </div>
   </div>
 
   <div mat-dialog-actions class="row mt-4">
     <div class="col p-0 d-flex justify-content-center">
-      <button class="btn action-button" mat-button [mat-dialog-close]="true" cdkFocusInitial>
-        <!-- {{ data.btnText }} -->
+      <button class="btn action-button mt-5 md" mat-button [mat-dialog-close]="true" cdkFocusInitial>
+        Entendido
       </button>
     </div>
   </div>

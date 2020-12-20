@@ -5,6 +5,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
+import { DialogSenhaComponent } from '../dialog-senha/dialog-senha.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
 import { FormOpcoesAtendimentoComponent } from '../form-opcoes-atendimento/form-opcoes-atendimento.component';
 import { FormPreCadastroComponent } from '../form-pre-cadastro/form-pre-cadastro.component';
@@ -41,6 +42,9 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private utilsService: UtilsService, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    this.showAlertSenha();
+
     this.authService.dadosUser.subscribe(dados => {
       if (dados) {
         this.router.navigateByUrl('dashboard/emprestimos');
@@ -73,7 +77,7 @@ export class HomeComponent implements OnInit {
       this.loading = false;
     }, err => {
       this.loading = false;
-    })
+    });
   }
 
 
@@ -90,6 +94,13 @@ export class HomeComponent implements OnInit {
         this.usuario_cpf = result.usuario_cpf;
         if (result.cadastrar) {
           this.preCadastro();
+
+          // .... salva as informacoes pre state .....
+          this.authService.banco_pre_selecionado = banco;
+          this.authService.benefit_pre_selecionado = this.convenio;
+          this.authService.valor_pre_selecionado = this.emprestimo_valor;
+          // .........
+
         } else {
           this.login(true);
         }
@@ -157,6 +168,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  showAlertSenha(): void {
+    const dialogRef = this.dialog.open(DialogSenhaComponent, {
+      data: {
+      }
+    });
+
+  }
 
 
 }

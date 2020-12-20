@@ -10,11 +10,15 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   usuario_logado = null;
+  banco_pre_selecionado = null;
+  benefit_pre_selecionado = null;
+  valor_pre_selecionado = null;
+
   constructor(private httpClient: HttpClient) { }
 
   private _dadosUser = new BehaviorSubject<any>(null);
 
-  public get dadosUser() { 
+  public get dadosUser() {
     return this._dadosUser.asObservable().pipe(
       map((r) => {
         return r;
@@ -40,9 +44,7 @@ export class AuthService {
   cadastrar(dados) {
     return this.httpClient.post(environment.urlApi + 'users', dados).pipe(tap(res => {
       this.usuario_logado = res;
-
       this._dadosUser.next(res);
-
       sessionStorage.setItem("usuario_logado", JSON.stringify(res));
     }));
   }
