@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { DialogAlertComponent } from 'src/app/dialog-alert/dialog-alert.component';
+import { DialogSenhaComponent } from 'src/app/dialog-senha/dialog-senha.component';
 import { ProgressBarComponent } from 'src/app/progress-bar/progress-bar.component';
 import { respostaCorreio, UtilsService } from 'src/app/utils.service';
 import { updateHeritageClause } from 'typescript';
@@ -71,6 +72,7 @@ export class CadastroCompletoComponent implements OnInit {
     '745 – Banco Citibank S.A.',
   ]
 
+  mostrouSenha = false;
   convenios = ['inss', 'federal', 'estadual']
 
   formPrimeiro = new FormGroup({
@@ -228,6 +230,11 @@ export class CadastroCompletoComponent implements OnInit {
       return;
     }
 
+    if (this.currentPage === 3 && !this.mostrouSenha) {
+      this.showAlertSenha();
+      this.mostrouSenha = true;
+    }
+
     if (this.currentPage === 4) {
       this.finalizar();
     } else {
@@ -235,6 +242,13 @@ export class CadastroCompletoComponent implements OnInit {
       this.scroll();
     }
 
+  }
+
+
+  showAlertSenha() {
+    const dialogRef = this.dialog.open(DialogSenhaComponent, {
+
+    });
   }
 
   buscaCEP() {
@@ -250,18 +264,21 @@ export class CadastroCompletoComponent implements OnInit {
   }
 
   validaSenhas() {
+
     let s1 = this.formQuinto.get('password').value;
     let s2 = this.formQuinto.get('c_password').value;
 
     if (s1 === s2) {
-      return true;
+      if (s2.toString().length > 8 && s1.toString().length > 8) {
+        return true;
+      }
     }
 
     const dialogRef = this.dialog.open(DialogAlertComponent, {
       data: {
         error: true,
         title: 'Senha inválida',
-        text: 'As senhas devem ser iguais',
+        text: 'As senhas devem ser iguais e devem conter, no mínimo, 8 caracteres.',
         btnText: 'Entendi'
       }
     });

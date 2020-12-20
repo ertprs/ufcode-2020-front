@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private utilsService: UtilsService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    const dialogRef = this.dialog.open(DialogSenhaComponent, {
 
-    this.showAlertSenha();
-
+    });
     this.authService.dadosUser.subscribe(dados => {
       if (dados) {
         this.router.navigateByUrl('dashboard/emprestimos');
@@ -137,6 +137,7 @@ export class HomeComponent implements OnInit {
 
   opcoesAtendimento(enderecoCep) {
     const dialogRef = this.dialog.open(FormOpcoesAtendimentoComponent, {
+      disableClose: true,
       data: {
         enderecoCep
       }
@@ -145,8 +146,12 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.agendou && result.acao === 'ligacao') {
         this.showAlertConfirma('Ligação agendada!', 'Entraremos em contato em breve.', 'Fechar');
+        this.authService.sair();
+        this.router.navigateByUrl('/home');
       } else if (result && result.agendou && result.acao === 'visita') {
         this.showAlertConfirma('Visita agendada!', 'Estamos esperando por você.', 'Fechar');
+        this.authService.sair();
+        this.router.navigateByUrl('/home');
       } else {
         this.router.navigateByUrl('/dashboard');
       }
@@ -168,14 +173,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  showAlertSenha(): void {
-    const dialogRef = this.dialog.open(DialogSenhaComponent, {
-      data: {
-      }
-    });
-
-  }
 
 
 }
