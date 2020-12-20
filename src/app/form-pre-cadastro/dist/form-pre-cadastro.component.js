@@ -14,8 +14,9 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var dialog_1 = require("@angular/material/dialog");
 var FormPreCadastroComponent = /** @class */ (function () {
-    function FormPreCadastroComponent(data, dialogRef) {
+    function FormPreCadastroComponent(data, utilsService, dialogRef) {
         this.data = data;
+        this.utilsService = utilsService;
         this.dialogRef = dialogRef;
     }
     FormPreCadastroComponent.prototype.ngOnInit = function () {
@@ -29,11 +30,23 @@ var FormPreCadastroComponent = /** @class */ (function () {
         });
     };
     FormPreCadastroComponent.prototype.preCadastro = function () {
-        this.close(true);
+        var _this = this;
+        if (this.form.valid) {
+            this.utilsService.buscaEnderecoCep(this.form.get('usuario_cep').value).subscribe(function (res) {
+                var enderecoCep = {
+                    endereco: res.logradouro,
+                    bairro: res.bairro,
+                    localidade: res.localidade,
+                    uf: res.uf
+                };
+                _this.close(true, enderecoCep);
+            });
+        }
     };
-    FormPreCadastroComponent.prototype.close = function (next) {
+    FormPreCadastroComponent.prototype.close = function (verificar, enderecoCep) {
         this.dialogRef.close({
-            verificar: next
+            verificar: verificar,
+            enderecoCep: enderecoCep
         });
     };
     FormPreCadastroComponent = __decorate([

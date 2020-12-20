@@ -22,6 +22,10 @@ var FormOpcoesAtendimentoComponent = /** @class */ (function () {
         this.loading = false;
         this.color = 'primary';
         this.mode = 'indeterminate';
+        this.enderecoString =
+            "Perto de " +
+                data.enderecoCep.bairro + ", " +
+                data.enderecoCep.localidade;
     }
     FormOpcoesAtendimentoComponent.prototype.ngOnInit = function () { };
     FormOpcoesAtendimentoComponent.prototype.close = function () {

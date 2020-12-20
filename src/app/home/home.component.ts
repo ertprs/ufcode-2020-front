@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    // this.preCadastro();
+    this.preCadastro();
     // this.opcoesAtendimento();
     // this.router.navigateByUrl('/dashboard');
 
@@ -125,16 +125,16 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.verificar) {
         // apenas se preenchido
-        this.opcoesAtendimento();
+        this.opcoesAtendimento(result.enderecoCep);
       }
     });
   }
 
 
-  opcoesAtendimento() {
+  opcoesAtendimento(enderecoCep) {
     const dialogRef = this.dialog.open(FormOpcoesAtendimentoComponent, {
       data: {
-
+        enderecoCep
       }
     });
 

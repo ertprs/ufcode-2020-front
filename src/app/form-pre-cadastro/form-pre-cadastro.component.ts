@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormSimulaCpfComponent } from '../form-simula-cpf/form-simula-cpf.component';
+import { respostaCorreio, UtilsService } from '../utils.service';
 
 @Component({
   selector: 'app-form-pre-cadastro',
@@ -18,6 +19,7 @@ export class FormPreCadastroComponent implements OnInit {
       usuario_cpf,
       emprestimo_valor
     },
+    private utilsService: UtilsService,
     public dialogRef: MatDialogRef<FormSimulaCpfComponent>
   ) {
 
@@ -36,12 +38,23 @@ export class FormPreCadastroComponent implements OnInit {
   }
 
   preCadastro() {
-    this.close(true);
+    if (this.form.valid) {
+      this.utilsService.buscaEnderecoCep(this.form.get('usuario_cep').value).subscribe((res: respostaCorreio) => {
+        let enderecoCep = {
+          endereco: res.logradouro,
+          bairro: res.bairro,
+          localidade: res.localidade,
+          uf: res.uf
+        }
+        this.close(true, enderecoCep);
+      })
+    }
   }
 
-  close(next?): void {
+  close(verificar?, enderecoCep?): void {
     this.dialogRef.close({
-      verificar: next
+      verificar,
+      enderecoCep
     });
   }
 

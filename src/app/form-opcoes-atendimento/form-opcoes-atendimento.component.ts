@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { respostaCorreio } from '../utils.service';
 
 @Component({
   selector: 'app-form-opcoes-atendimento',
@@ -23,19 +24,22 @@ export class FormOpcoesAtendimentoComponent implements OnInit {
   color: ThemePalette = 'primary';
   mode: ProgressSpinnerMode = 'indeterminate';
 
+  enderecoString;
+
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {
-      success?;
-      error?;
-      warning?;
-      title?;
-      text?;
-      btnText?;
-      dialogQuestion?;
+      enderecoCep?: respostaCorreio;
     },
     public dialogRef: MatDialogRef<FormOpcoesAtendimentoComponent>
-  ) { }
+  ) {
+
+    this.enderecoString =
+      "Perto de " +
+      data.enderecoCep.bairro + ", " +
+      data.enderecoCep.localidade;
+
+  }
 
   ngOnInit(): void { }
 

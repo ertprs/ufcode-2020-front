@@ -26,6 +26,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DialogAlertComponent } from './dialog-alert/dialog-alert.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PerguntasFrequentesComponent } from './perguntas-frequentes/perguntas-frequentes.component';
+import { UtilsService } from './utils.service';
+import { HttpClientModule } from '@angular/common/http';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -48,6 +50,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgbModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     MatInputModule,
     MatSelectModule,
@@ -60,7 +63,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     MatRadioModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  providers: [UtilsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

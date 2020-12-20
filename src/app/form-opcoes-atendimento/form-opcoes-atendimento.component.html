@@ -59,6 +59,9 @@
       <div class="col p-2">
         <label class="small-title" style="text-transform: capitalize;">
           {{opcao_atendimento}}
+          <label *ngIf="opcao_atendimento === 'visita'" class="label-default"
+            style="text-transform: capitalize;">({{enderecoString}})
+          </label>
         </label>
       </div>
     </div>

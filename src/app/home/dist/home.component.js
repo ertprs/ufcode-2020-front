@@ -28,7 +28,7 @@ var HomeComponent = /** @class */ (function () {
         this.resultadosEncontrados = [];
     }
     HomeComponent.prototype.ngOnInit = function () {
-        // this.preCadastro();
+        this.preCadastro();
         // this.opcoesAtendimento();
         // this.router.navigateByUrl('/dashboard');
     };
@@ -105,14 +105,16 @@ var HomeComponent = /** @class */ (function () {
         dialogRef.afterClosed().subscribe(function (result) {
             if (result && result.verificar) {
                 // apenas se preenchido
-                _this.opcoesAtendimento();
+                _this.opcoesAtendimento(result.enderecoCep);
             }
         });
     };
-    HomeComponent.prototype.opcoesAtendimento = function () {
+    HomeComponent.prototype.opcoesAtendimento = function (enderecoCep) {
         var _this = this;
         var dialogRef = this.dialog.open(form_opcoes_atendimento_component_1.FormOpcoesAtendimentoComponent, {
-            data: {}
+            data: {
+                enderecoCep: enderecoCep
+            }
         });
         dialogRef.afterClosed().subscribe(function (result) {
             if (result && result.agendou && result.acao === 'ligacao') {

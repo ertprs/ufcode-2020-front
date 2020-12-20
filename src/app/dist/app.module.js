@@ -30,6 +30,10 @@ var form_pre_cadastro_component_1 = require("./form-pre-cadastro/form-pre-cadast
 var form_opcoes_atendimento_component_1 = require("./form-opcoes-atendimento/form-opcoes-atendimento.component");
 var core_2 = require("@angular/material/core");
 var dialog_alert_component_1 = require("./dialog-alert/dialog-alert.component");
+var dashboard_component_1 = require("./dashboard/dashboard.component");
+var perguntas_frequentes_component_1 = require("./perguntas-frequentes/perguntas-frequentes.component");
+var utils_service_1 = require("./utils.service");
+var http_1 = require("@angular/common/http");
 exports.options = null;
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -44,7 +48,9 @@ var AppModule = /** @class */ (function () {
                 form_simula_cpf_component_1.FormSimulaCpfComponent,
                 form_pre_cadastro_component_1.FormPreCadastroComponent,
                 form_opcoes_atendimento_component_1.FormOpcoesAtendimentoComponent,
-                dialog_alert_component_1.DialogAlertComponent
+                dialog_alert_component_1.DialogAlertComponent,
+                dashboard_component_1.DashboardComponent,
+                perguntas_frequentes_component_1.PerguntasFrequentesComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -52,6 +58,7 @@ var AppModule = /** @class */ (function () {
                 ng_bootstrap_1.NgbModule,
                 animations_1.BrowserAnimationsModule,
                 forms_1.ReactiveFormsModule,
+                http_1.HttpClientModule,
                 forms_1.FormsModule,
                 input_1.MatInputModule,
                 select_1.MatSelectModule,
@@ -64,7 +71,7 @@ var AppModule = /** @class */ (function () {
                 radio_1.MatRadioModule,
                 ngx_mask_1.NgxMaskModule.forRoot(),
             ],
-            providers: [],
+            providers: [utils_service_1.UtilsService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
