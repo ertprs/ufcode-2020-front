@@ -23,6 +23,9 @@
 
 // Medium devices (tablets, 768px and up)
 @media (max-width: 768px) {
+  .progress-bar-div {
+    display: none;
+  }
 
   .card-panel {
     // min-width: 25vw !important;
@@ -34,7 +37,9 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
+  
   .card-panel {
+    
     min-width: 100% !important;
     max-width: 100% !important;
     height: 100% !important;
