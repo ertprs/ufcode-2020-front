@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: 'https://ufcode.cloudno.de/'
+  urlApi: 'https://ufcode2020.herokuapp.com/'
   // urlApi: 'http://localhost:3000/'
 };
 
