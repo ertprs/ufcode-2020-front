@@ -1,22 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { DialogCollapseComponent } from '../dialog-collapse/dialog-collapse.component';
 import { FormLoginComponent } from '../form-login/form-login.component';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  selector: 'app-dialog-collapse',
+  templateUrl: './dialog-collapse.component.html',
+  styleUrls: ['./dialog-collapse.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class DialogCollapseComponent implements OnInit {
 
   user = null;
 
-  @Input() showPerguntas = true;
 
-  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
+  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router,
+
+    @Inject(MAT_DIALOG_DATA)
+    public data: {
+      showPerguntas?
+    },
+    public dialogRef: MatDialogRef<DialogCollapseComponent>) { }
 
   ngOnInit(): void {
     this.authService.autoLogin();
@@ -41,20 +45,11 @@ export class NavBarComponent implements OnInit {
     });
   }
 
-  openCollapse() {
-    const dialogRef = this.dialog.open(DialogCollapseComponent, {
-      data: {
-        // paramos
-        showPerguntas: this.showPerguntas
-      }
-    });
-
-  }
-
   sair() {
     this.authService.sair();
     this.user = null;
     this.router.navigateByUrl('/home');
   }
+
 
 }

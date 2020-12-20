@@ -2,6 +2,20 @@
   width: 500px;
 }
 
+@media (max-width: 768px) {
+  .mat-dialog-content {
+    width: 82vw;
+  }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .mat-dialog-content {
+    width: 500px;
+  }
+}
+
 .btn-close {
   position: absolute;
   right: 0px;

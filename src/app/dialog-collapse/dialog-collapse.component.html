@@ -1,0 +1,22 @@
+<div class="dialog-agenda container">
+  <div mat-dialog-content>
+    <div class="row d-flex justify-content-center mt-4">
+
+
+      <label *ngIf="user" class="label-medium mr-4" (click)="sair()">
+        {{user.name}} (<label class="label-medium color-orange user">Sair</label>)
+      </label>
+
+      <button *ngIf="!user" class="btn btn-outline my-2 my-sm-0 action-button outline" type="button"
+        (click)="openLogin()">
+        Entrar na minha conta
+      </button>
+
+      <button *ngIf="data.showPerguntas" class="btn btn-outline my-2 my-sm-0 action-button outline" type="button">
+        <a href="https://ufcode2020.web.app/perguntas-frequentes" target="_blank">Perguntas frequentes</a>
+      </button>
+
+
+    </div>
+  </div>
+</div>

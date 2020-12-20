@@ -33,6 +33,7 @@ import { CadastroCompletoComponent } from './dashboard/cadastro-completo/cadastr
 import { DialogSenhaComponent } from './dialog-senha/dialog-senha.component';
 import { EmprestimosComponent } from './dashboard/emprestimos/emprestimos.component';
 import { DialogNovoEmprestimoComponent } from './dialog-novo-emprestimo/dialog-novo-emprestimo.component';
+import { DialogCollapseComponent } from './dialog-collapse/dialog-collapse.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
@@ -52,7 +53,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     CadastroCompletoComponent,
     DialogSenhaComponent,
     EmprestimosComponent,
-    DialogNovoEmprestimoComponent
+    DialogNovoEmprestimoComponent,
+    DialogCollapseComponent
   ],
   imports: [
     BrowserModule,

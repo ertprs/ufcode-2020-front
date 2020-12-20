@@ -42,9 +42,9 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private utilsService: UtilsService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    const dialogRef = this.dialog.open(DialogSenhaComponent, {
+    // const dialogRef = this.dialog.open(DialogSenhaComponent, {
 
-    });
+    // });
     this.authService.dadosUser.subscribe(dados => {
       if (dados) {
         this.router.navigateByUrl('dashboard/emprestimos');
