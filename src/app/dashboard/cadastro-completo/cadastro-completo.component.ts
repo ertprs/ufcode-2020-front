@@ -127,20 +127,20 @@ export class CadastroCompletoComponent implements OnInit {
   ngOnInit(): void {
     this.authService.dadosUser.subscribe(user => {
 
-      if (user && user.user && !user.user.isLead) {
-        this.router.navigateByUrl('dashboard/emprestimos');
-        return;
-      }
+      // if (user && user.user && !user.user.isLead) {
+      //   this.router.navigateByUrl('dashboard/emprestimos');
+      //   return;
+      // }
 
-      let hasUser = sessionStorage.getItem("usuario_logado");
-      console.log(hasUser);
+      // let hasUser = sessionStorage.getItem("usuario_logado");
+      // console.log(hasUser);
 
-      if (!hasUser) {
-        this.router.navigateByUrl('home');
-        return;
-      }
+      // if (!hasUser) {
+      //   this.router.navigateByUrl('home');
+      //   return;
+      // }
 
-      this.inicializaForms();
+      // this.inicializaForms();
 
     })
   }
